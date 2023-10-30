@@ -21,6 +21,7 @@
 
 				<div id="sections">
 					<span class="selected">docs</span>
+					<a href="../examples/#webgl_animation_keyframes">examples</a>
 				</div>
 
 				<div id="expandButton"></div>
@@ -61,6 +62,8 @@
 		const filterInput = document.getElementById( 'filterInput' );
 		let iframe = document.querySelector( 'iframe' );
 
+		const sectionLink = document.querySelector( '#sections > a' );
+		const sectionDefaultHref = sectionLink.href;
 
 		const pageProperties = {};
 		const titles = {};
@@ -414,6 +417,17 @@
 
 			// update examples link
 
+			if ( search ) {
+
+				const link = sectionLink.href.split( /[?#]/ )[ 0 ];
+				sectionLink.href = `${link}?q=${search}`;
+
+			} else {
+
+				sectionLink.href = sectionDefaultHref;
+
+			}
+
 		}
 
 		function displayFilteredPanel() {
@@ -486,11 +500,11 @@
 			if ( currentProperties ) {
 
 				return currentProperties.pageURL + splitPageName[ 1 ];
-
+		
 			} else {
 
 				return null;
-
+		
 			}
 
 		}
